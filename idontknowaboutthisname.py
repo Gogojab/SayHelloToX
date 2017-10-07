@@ -51,7 +51,7 @@ def get_welcome_response():
 
     session_attributes = {}
     card_title = "Welcome"
-    speech_output = "Hello Jon"
+    speech_output = "Hello Jon today"
     
     should_end_session = True
     return build_response(session_attributes, build_speechlet_response(
