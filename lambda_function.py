@@ -51,7 +51,7 @@ def get_welcome_response():
 
     session_attributes = {}
     card_title = "Welcome"
-    speech_output = "Hello Jon today"
+    speech_output = "Hello Jon today 4"
     
     should_end_session = True
     return build_response(session_attributes, build_speechlet_response(
@@ -187,9 +187,9 @@ def lambda_handler(event, context):
     prevent someone else from configuring a skill that sends requests to this
     function.
     """
-    # if (event['session']['application']['applicationId'] !=
-    #         "amzn1.ask.skill.b6c48e19-be7b-476e-b118-f371cc43fb14"):
-    #     raise ValueError("Invalid Application ID")
+    if (event['session']['application']['applicationId'] !=
+            "amzn1.ask.skill.b6c48e19-be7b-476e-b118-f371cc43fb14"):
+        raise ValueError("Invalid Application ID")
 
     if event['session']['new']:
         on_session_started({'requestId': event['request']['requestId']},
