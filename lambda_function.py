@@ -150,6 +150,8 @@ def on_intent(intent_request, session):
     intent = intent_request['intent']
     intent_name = intent_request['intent']['name']
 
+    
+
     # Dispatch to your skill's intent handlers
     if intent_name == "MyColorIsIntent":
         return set_color_in_session(intent, session)
@@ -160,6 +162,7 @@ def on_intent(intent_request, session):
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
         return handle_session_end_request()
     else:
+        print("invalid intent name=" + intent_name)
         raise ValueError("Invalid intent")
 
 
