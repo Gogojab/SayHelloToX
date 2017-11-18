@@ -51,9 +51,9 @@ def get_welcome_response():
 
     session_attributes = {}
     card_title = "Welcome"
-    speech_output = "Hello Jon today 4"
+    speech_output = "What is their name?"
     
-    should_end_session = True
+    should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, None, should_end_session))
 
@@ -99,10 +99,17 @@ def set_color_in_session(intent, session):
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
-def say_hello_to_x(intent, session):
+def meet_my_friend(intent, session):
     session_attributes = {}
-    card_title = "Said hello to"
-    speech_output = "intent 1"
+    card_title = "Said hello to: " 
+    speech_output = "hello there "
+
+    if "helloee" in intent["slots"]:
+        helloee = intent["slots"]["helloee"]["value"]
+        print("helloee =" + helloee)
+	card_title = card_title + helloee
+	speech_output = speech_output + helloee
+   
     
     should_end_session = True
     return build_response(session_attributes, build_speechlet_response(
@@ -159,8 +166,8 @@ def on_intent(intent_request, session):
     intent = intent_request['intent']
     intent_name = intent_request['intent']['name']
 
-    if intent_name == "SayHelloToX":
-	return say_hello_to_x(intent, session)
+    if intent_name == "MeetMyFriend":
+	return meet_my_friend(intent, session)
 
     # Dispatch to your skill's intent handlers
     if intent_name == "MyColorIsIntent":
