@@ -20,8 +20,8 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session):
         },
         'card': {
             'type': 'Simple',
-            'title': "SessionSpeechlet - " + title,
-            'content': "SessionSpeechlet - " + output
+            'title': "MeetMyFriend - " + title,
+            'content': "MeetMyFriend - " + output
         },
         'reprompt': {
             'outputSpeech': {
