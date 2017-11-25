@@ -55,7 +55,7 @@ def get_welcome_response():
 
 def handle_session_end_request():
     card_title = "Session Ended"
-    speech_output = "Ta muchly" 
+    speech_output = "Cheerio!" 
     session_attributes = {}
     # Setting this to true ends the session and exits the skill.
     should_end_session = True
@@ -76,11 +76,21 @@ def meet_my_friend(intent, session):
     card_title = "Said hello to: " 
     speech_output = "hello there "
 
+    print("intent is: " + str(intent))
+
     if "helloee" in intent["slots"]:
-        helloee = intent["slots"]["helloee"]["value"]
-        print("helloee =" + helloee)
-	card_title = card_title + helloee
-	speech_output = speech_output + helloee
+
+        if "value" in intent["slots"]["helloee"]:
+            helloee = intent["slots"]["helloee"]["value"]
+            print("helloee =" + helloee)
+	    card_title = card_title + helloee
+	    speech_output = speech_output + helloee
+        else:
+            print("no helloee value")
+            return(handle_help_request())
+    else:
+        print("no helloee")
+        return(handle_help_request())
    
     
     should_end_session = True
