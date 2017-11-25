@@ -43,7 +43,6 @@ def get_welcome_response():
     """ If we wanted to initialize the session to have some attributes we could
     add those here
     """
-    
 
     session_attributes = {}
     card_title = "Welcome"
@@ -113,6 +112,10 @@ def on_intent(intent_request, session):
 
     if intent_name == "MeetMyFriend":
 	return meet_my_friend(intent, session)
+    elif intent_name == "AMAZON.CancelIntent":
+        return handle_session_end_request()
+    elif intent_name == "AMAZON.StopIntent":
+        return handle_session_end_request()
     else:
         print("invalid intent name=" + intent_name)
         raise ValueError("Invalid intent")
