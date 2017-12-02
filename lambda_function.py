@@ -74,7 +74,7 @@ def handle_help_request():
 def meet_my_friend(intent, session):
     session_attributes = {}
     card_title = "Said hello to: " 
-    speech_output = "hello there "
+    speech_output = "hello there, "
 
     print("intent is: " + str(intent))
 
