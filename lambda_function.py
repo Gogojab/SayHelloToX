@@ -1,5 +1,5 @@
 """
-MeetMyFriend
+SendSomeoneToBed
 
 """
 
@@ -16,8 +16,8 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session):
         },
         'card': {
             'type': 'Simple',
-            'title': "MeetMyFriend - " + title,
-            'content': "MeetMyFriend - " + output
+            'title': "SendSomeoneToBed - " + title,
+            'content': "SendSomeoneToBed - " + output
         },
         'reprompt': {
             'outputSpeech': {
@@ -64,7 +64,7 @@ def handle_session_end_request():
 
 def handle_help_request():
     card_title = "Help Requested"
-    speech_output = "Tell me your friend's name, for example, their name is Bob"
+    speech_output = "Tell me their name, for example, their name is Bob"
     session_attributes = {}
     should_end_session =  False
     return build_response(session_attributes, build_speechlet_response(
@@ -73,8 +73,8 @@ def handle_help_request():
 
 def meet_my_friend(intent, session):
     session_attributes = {}
-    card_title = "Said hello to: " 
-    speech_output = "hello there, "
+    card_title = "Dispatched: " 
+    speech_output = "Time for bed, "
 
     print("intent is: " + str(intent))
 
@@ -128,7 +128,7 @@ def on_intent(intent_request, session):
     intent = intent_request['intent']
     intent_name = intent_request['intent']['name']
 
-    if intent_name == "MeetMyFriend":
+    if intent_name == "SendSomeoneToBed":
 	return meet_my_friend(intent, session)
     elif intent_name == "AMAZON.CancelIntent":
         return handle_session_end_request()
@@ -165,9 +165,7 @@ def lambda_handler(event, context):
     prevent someone else from configuring a skill that sends requests to this
     function.
     """
-    if (event['session']['application']['applicationId'] !=
-#    b14 is SayHelloToX, 645 is MeetMyGuest
-#            "amzn1.ask.skill.b6c48e19-be7b-476e-b118-f371cc43fb14"):
+   iif (event['session']['application']['applicationId'] !=
             "amzn1.ask.skill.b3bf10c3-db55-412c-a7ce-0490a9b4e645"):
         raise ValueError("Invalid Application ID")
 
